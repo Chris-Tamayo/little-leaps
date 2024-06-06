@@ -4,11 +4,11 @@ function ProgressPage() {
   return (
     <div className="flex">
         <Navbar/>
-        <div className="flex justify-center w-full">
+        <section className="flex justify-center w-full">
           <div className="w-1/2">
             <h1>Progress</h1>
           </div>
-        </div>
+        </section>
       </div>
   )
 }

@@ -10,6 +10,40 @@
   width: 100%;
 }
 
+section {
+  padding-top: 20px;
+}
+
+.section-heading {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.entry-section {
+  margin-top: 20px;
+}
+
+.entry {
+  border-bottom: solid #eeeeee;
+  padding: 10px 0;
+}
+
+.add-button {
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-radius: 100%;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  bottom: 20px;
+  right: 20px;
+  padding-bottom: 5px;
+}
+
 /*
 ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
 */
@@ -574,18 +608,14 @@ video {
   height: 100vh;
 }
 
-.w-full {
-  width: 100%;
-}
-
 .w-1\/2 {
   width: 50%;
 }
 
-.justify-center {
-  justify-content: center;
+.w-full {
+  width: 100%;
 }
 
-.p-4 {
-  padding: 1rem;
+.justify-center {
+  justify-content: center;
 }
