@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+body {
+  overflow: hidden;
+}
+
 section {
   padding-top: 20px;
 }
@@ -21,11 +25,19 @@ section {
 
 .entry-section {
   margin-top: 20px;
+  overflow-y: auto;
+  height: 80vh;
 }
 
 .entry {
   border-bottom: solid #eeeeee;
   padding: 10px 0;
+}
+
+.add-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 .add-button {

@@ -1,6 +1,17 @@
 import Navbar from "../components/Navbar";
 
 function MotivationPage() {
+  function handleAddButtonClicked() {
+    const entrySection = document.querySelector(".entry-section");
+    const p = document.createElement("p");
+    p.classList.add("entry");
+    p.innerText = "Hello";
+
+    if (entrySection !== null) {
+      entrySection.appendChild(p);
+    }
+  }
+  
   return (
     <>
       <div className="flex">
@@ -15,7 +26,7 @@ function MotivationPage() {
             </div>
           </div>
         </section>
-        <button className="add-button">+</button>
+        <button onClick={handleAddButtonClicked} className="add-button">+</button>
       </div>
     </>
   )
