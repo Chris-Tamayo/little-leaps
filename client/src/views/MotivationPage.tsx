@@ -13,37 +13,36 @@ function MotivationPage() {
     input.classList.add("entry-input");
     input.placeholder = "ex. I want to be a healthy eater";
 
-
     div.appendChild(input);
+
+    // Create delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-input-button");
+
+    div.appendChild(deleteButton);
+
+    const deleteIcon = document.createElement("span");
+    deleteIcon.classList.add("material-symbols-outlined");
+    deleteIcon.innerHTML = "close";
+
+    deleteButton.appendChild(deleteIcon);
+
+    deleteButton.addEventListener("click", () => {
+      div.remove();
+    })
+
+    div.addEventListener("mouseover", () => {
+      deleteButton.style.display = "block";
+    })
+
+    div.addEventListener("mouseout", () => {
+      deleteButton.style.display = "none";
+    })
 
     // Handle blur
     input.addEventListener("blur", () => {
       if (input.value === "") {
         div.remove();
-      } else {
-        // Create delete button
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("delete-input-button");
-
-        div.appendChild(deleteButton);
-
-        const deleteIcon = document.createElement("span");
-        deleteIcon.classList.add("material-symbols-outlined");
-        deleteIcon.innerHTML = "close";
-
-        deleteButton.appendChild(deleteIcon);
-
-        deleteButton.addEventListener("click", () => {
-          div.remove();
-        })
-    
-        div.addEventListener("mouseover", () => {
-          deleteButton.style.display = "block";
-        })
-    
-        div.addEventListener("mouseout", () => {
-          deleteButton.style.display = "none";
-        })
       }
     })
 
@@ -58,10 +57,6 @@ function MotivationPage() {
       entrySection.appendChild(div);
       input.focus();
     }
-  }
-
-  function handleFormSubmit() {
-
   }
   
   return (
