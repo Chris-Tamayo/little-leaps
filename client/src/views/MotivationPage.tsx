@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import { DateTime } from "luxon";
 
 function MotivationPage() {
   function handleAddButtonClicked() {
@@ -17,7 +18,7 @@ function MotivationPage() {
 
     // Delete button
     const deleteButton = document.createElement("button");
-    deleteButton.classList.add("delete-input-button");
+    deleteButton.classList.add("entry-button");
 
     const deleteIcon = document.createElement("span");
     deleteIcon.classList.add("material-symbols-outlined");
@@ -72,6 +73,7 @@ function MotivationPage() {
         <Navbar/>
         <section className="flex justify-center w-full">
           <div className="w-1/2">
+            <p className="date">{DateTime.now().toLocaleString(DateTime.DATE_HUGE)}</p>
             <h1 className="section-heading">Motivation</h1>
             <p>What kind of person do you aspire to be?</p>
             <div className="entry-section">
