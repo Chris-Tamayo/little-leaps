@@ -1,6 +1,6 @@
 nav {
   border-right: solid #eeeeee;
-  width: 15vw;
+  width: 20vw;
 }
 
 .nav-link {
@@ -9,4 +9,8 @@ nav {
 
 li.active {
   background-color: #eeeeee;
+}
+
+.icon {
+  margin: 5px;
 }
