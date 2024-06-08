@@ -13,13 +13,11 @@ function MotivationPage() {
     input.classList.add("entry-input");
     input.placeholder = "ex. I want to be a healthy eater";
 
-    div.appendChild(input);
+    addTextInputEventListeners(input, div);
 
-    // Create delete button
+    // Delete button
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-input-button");
-
-    div.appendChild(deleteButton);
 
     const deleteIcon = document.createElement("span");
     deleteIcon.classList.add("material-symbols-outlined");
@@ -27,6 +25,34 @@ function MotivationPage() {
 
     deleteButton.appendChild(deleteIcon);
 
+    addDeleteButtonEventListeners(deleteButton, div);
+
+    // Add entry to entry section
+    div.appendChild(input);
+    div.appendChild(deleteButton);
+
+    if (entrySection !== null) {
+      entrySection.appendChild(div);
+      input.focus();
+    }
+  }
+
+  function addTextInputEventListeners(input: HTMLInputElement, div: HTMLDivElement) {
+    input.addEventListener("blur", () => {
+      // Remove entry if nothing was entered
+      if (input.value === "") {
+        div.remove();
+      }
+    })
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === 'Enter') {
+        input.blur();
+      }
+    })
+  }
+
+  function addDeleteButtonEventListeners(deleteButton: HTMLButtonElement, div: HTMLDivElement) {
     deleteButton.addEventListener("click", () => {
       div.remove();
     })
@@ -38,25 +64,6 @@ function MotivationPage() {
     div.addEventListener("mouseout", () => {
       deleteButton.style.display = "none";
     })
-
-    // Handle blur
-    input.addEventListener("blur", () => {
-      if (input.value === "") {
-        div.remove();
-      }
-    })
-
-    // Handle 'enter' pressed
-    input.addEventListener("keydown", (e) => {
-      if (e.key === 'Enter') {
-        input.blur();
-      }
-    })
-
-    if (entrySection !== null) {
-      entrySection.appendChild(div);
-      input.focus();
-    }
   }
   
   return (
