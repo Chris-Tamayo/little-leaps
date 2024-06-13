@@ -12,7 +12,7 @@ function BuildingHabitsPage() {
     // Text input
     const input = document.createElement("input");
     input.classList.add("entry-input");
-    input.placeholder = "ex. Read 10 pages; Make bed; Run for 30 minutes";
+    input.placeholder = "ex. Read 10 pages; Drink a gallon of water; Run for 30 minutes";
 
     addTextInputEventListeners(input, div);
 

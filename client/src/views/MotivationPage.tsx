@@ -12,7 +12,7 @@ function MotivationPage() {
     // Text input
     const input = document.createElement("input");
     input.classList.add("entry-input");
-    input.placeholder = "ex. I want to be a healthy eater";
+    input.placeholder = "ex. I want to be a healthy eater; I'm someone who always keeps a positive attitude at work";
 
     addTextInputEventListeners(input, div);
 
