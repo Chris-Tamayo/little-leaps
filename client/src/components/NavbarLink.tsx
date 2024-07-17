@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface NavbarLinkProps {
   href: string,
   label: string,
@@ -10,12 +12,12 @@ function NavbarLink({href, label, iconName}: NavbarLinkProps) {
   return (
     <>
     <li className={path === href ? "active": ""}>
-      <a href={href}>
+      <Link to={href}>
         <div className="flex items-center nav-link">
           <span className="material-symbols-outlined icon">{iconName}</span>
           <span>{label}</span>
         </div>
-      </a>
+      </Link>
     </li>
     </>
   )
