@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import DeleteButton from "./DeleteButton"
+import DeleteButton from "../common/DeleteButton"
 
 interface MotivationProps {
   id: number,

@@ -1,5 +1,5 @@
-import MotivationSection from "../components/MotivationSection";
-import Navbar from "../components/Navbar";
+import MotivationSection from "../components/motivation/MotivationSection";
+import Navbar from "../components/layout/Navbar";
 
 function MotivationPage() {
   return (

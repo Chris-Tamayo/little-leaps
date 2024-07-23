@@ -1,5 +1,7 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/layout/Navbar";
 import { DateTime } from "luxon";
+
+let nextId = 0;
 
 function BuildingHabitsPage() {
   function handleAddButtonClicked() {
@@ -8,6 +10,8 @@ function BuildingHabitsPage() {
     // Entry container
     const div = document.createElement("div");
     div.classList.add("entry");
+    div.setAttribute("data-id", String(nextId));
+    nextId++;
 
     // Text input
     const input = document.createElement("input");
@@ -27,6 +31,7 @@ function BuildingHabitsPage() {
     editButton.appendChild(editIcon);
 
     addButtonEventListeners(editButton, div);
+    addEditButtonEventListeners(editButton, div);
 
     // Delete button
     const deleteButton = document.createElement("button");
@@ -85,6 +90,18 @@ function BuildingHabitsPage() {
     })
   }
 
+  function addEditButtonEventListeners(editButton: HTMLButtonElement, div: HTMLDivElement) {
+    editButton.addEventListener("click", () => {
+      const dataId = div.getAttribute("data-id");
+
+      // Make edit form visible
+      const editForm = document.getElementById("edit-container");
+      if (editForm) {
+        editForm.style.display = "block";
+      }
+    })
+  }
+
   function addDeleteButtonEventListeners(deleteButton: HTMLButtonElement, div: HTMLDivElement) {
     deleteButton.addEventListener("click", () => {
       div.remove();
@@ -106,7 +123,7 @@ function BuildingHabitsPage() {
   return (
     <div className="flex">
       <Navbar/>
-      <section className="flex justify-center w-full">
+      <section className="flex justify-center w-full relative">
         <div className="w-1/2">
           <p className="date">{DateTime.now().toLocaleString(DateTime.DATE_HUGE)}</p>
           <h1 className="section-heading">Building Habits</h1>
@@ -117,6 +134,50 @@ function BuildingHabitsPage() {
             <button onClick={handleAddButtonClicked} className="add-button">+</button>
           </div>
         </div>
+
+        <div id="edit-container" className="absolute w-1/2">
+          <h1 className="section-heading">Edit Habit</h1>
+          <div>
+            <div className="edit-element">
+              <p>Habit Name</p>
+              <input placeholder="ex. Read 10 pages"></input>
+            </div>
+
+            <div className="edit-element">
+              <p>Category</p>
+              <div>
+                <button className="category">None</button>
+                <button className="category">Morning</button>
+                <button className="category">Afternoon</button>
+                <button className="category">Evening</button>
+              </div>
+            </div>
+
+            <div className="edit-element">
+              <p>Repeat on</p>
+              <div>
+                <button className="weekday">Su</button>
+                <button className="weekday">M</button>
+                <button className="weekday">T</button>
+                <button className="weekday">W</button>
+                <button className="weekday">Th</button>
+                <button className="weekday">F</button>
+                <button className="weekday">Sa</button>
+              </div>
+            </div>
+            
+            <div className="edit-element">
+              <p>Notes</p>
+              <input></input>
+            </div>
+            
+            <div className="edit-element button-container">
+              <button>Cancel</button>
+              <button>Submit</button>
+            </div>
+          </div>
+        </div>
+
       </section>
     </div>
   )

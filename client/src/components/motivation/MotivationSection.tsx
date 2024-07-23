@@ -1,8 +1,8 @@
 import { createRef, useEffect, useState } from "react";
-import Motivation from "../components/Motivation";
-import AddButton from "./AddButton";
-import SectionHeader from "./SectionHeader";
-import DateDisplay from "./DateDisplay";
+import Motivation from "./Motivation";
+import AddButton from "../common/AddButton";
+import SectionHeader from "../common/SectionHeader";
+import DateDisplay from "../common/DateDisplay";
 import MotivationList from "./MotivationList";
 
 let nextId = 0;

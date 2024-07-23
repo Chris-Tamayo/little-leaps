@@ -1,4 +1,4 @@
-import "../styles/Navbar.css";
+import "../../styles/Navbar.css";
 import NavbarLink from "./NavbarLink";
 
 function Navbar() {
