@@ -46,6 +46,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
 
 .entry-input {
@@ -61,7 +62,7 @@ section {
 }
 
 .entry-button {
-  display: none;
+  /* display: none; */
   width: 20px;
   height: 20px;
   color: #aaaaaa;
@@ -72,6 +73,44 @@ section {
   color: black;
 }
 
+/* Edit form styling */
+
+#edit-container {
+  display: none;
+  background-color: white;
+}
+
+#edit-container input {
+  border: solid #eeeeee;
+  padding: 2px 6px 2px 6px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+#edit-container button {
+  border: solid #eeeeee;
+  margin-right: 7.5px;
+}
+
+#edit-container .edit-element {
+  margin: 16px 0px;
+}
+
+#edit-container button.category {
+  border-radius: 7.5px;
+  padding: 5px 10px;
+}
+
+#edit-container .weekday {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+
+#edit-container .button-container button {
+  border-radius: 7.5px;
+  padding: 5px 10px;
+}
 
 /* 
 Floating button
