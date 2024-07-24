@@ -62,7 +62,6 @@ section {
 }
 
 .entry-button {
-  /* display: none; */
   width: 20px;
   height: 20px;
   color: #aaaaaa;
@@ -76,7 +75,6 @@ section {
 /* Edit form styling */
 
 #edit-container {
-  display: none;
   background-color: white;
 }
 
