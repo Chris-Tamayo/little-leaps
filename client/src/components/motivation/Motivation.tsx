@@ -6,9 +6,10 @@ interface MotivationProps {
   text: string,
   inputRef: React.RefObject<HTMLInputElement>,
   onDelete: (id: number) => void;
+  onEdit: (newMotivation: { id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }) => void
 }
 
-const Motivation = ({ id, text, inputRef, onDelete }: MotivationProps) => {
+const Motivation = ({ id, text, inputRef, onDelete, onEdit }: MotivationProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => setIsHovered(true);
@@ -26,6 +27,13 @@ const Motivation = ({ id, text, inputRef, onDelete }: MotivationProps) => {
     }
   }
 
+  const handleChange = () => {
+    if (inputRef.current !== null) {
+      text = inputRef.current.value;
+      onEdit({ id: id, text: text, inputRef: inputRef });
+    }
+  }
+
   return (
     <div 
       className="entry" 
@@ -37,9 +45,11 @@ const Motivation = ({ id, text, inputRef, onDelete }: MotivationProps) => {
         type="text" 
         className="entry-input" 
         placeholder="ex. I want to be a healthy eater"
+        value={text}
         ref={inputRef}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
+        onChange={handleChange}
       />
       {isHovered && <DeleteButton onClick={() => onDelete(id)}/>}
     </div>

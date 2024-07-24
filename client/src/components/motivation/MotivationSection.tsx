@@ -21,7 +21,7 @@ const MotivationSection = () => {
     console.log("Add button clicked");
 
     const ref = createRef<HTMLInputElement>();
-    const newMotivations = motivations.concat({ id: nextId, text: "Test", inputRef: ref});
+    const newMotivations = motivations.concat({ id: nextId, text: "", inputRef: ref});
     setMotivations(newMotivations);
 
     // Increment entry id
@@ -31,10 +31,26 @@ const MotivationSection = () => {
     setNewMotivationRef(ref);
   }
 
+  const handleEdit = (newMotivation: {id: number, text: string, inputRef: React.RefObject<HTMLInputElement>}) => {
+    console.log("Editing id: " + newMotivation.id);
+    const newMotivations = motivations.map((motivation) => {
+      if (motivation.id === newMotivation.id) {
+        return newMotivation;
+      }
+      return motivation;
+    });
+    setMotivations(newMotivations);
+  }
+
   const handleDelete = (id: number) => {
     console.log("Deleting id: " + id);
     const newMotivations = motivations.filter((motivation) => motivation.id !== id)
     setMotivations(newMotivations);
+  }
+
+  const printList = () => {
+    console.log("Printing...");
+    motivations.forEach((motivation) => console.log(motivation));
   }
 
   return (
@@ -45,8 +61,9 @@ const MotivationSection = () => {
           title="Motivation" 
           description="What kind of person do you aspire to be?"
         />
-        <MotivationList motivations={motivations} onDelete={handleDelete} />
+        <MotivationList motivations={motivations} onDelete={handleDelete} onEdit={handleEdit}/>
         <AddButton onClick={handleAddButtonClicked} />
+        <button onClick={printList}>Print</button>
       </div>
     </section>
   )
