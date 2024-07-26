@@ -5,13 +5,17 @@ import EditButton from "../common/EditButton";
 interface BuildingHabitProps {
   id: number,
   text: string,
+  category: string,
+  days: string[],
+  notes: string,
   done: boolean,
   inputRef: React.RefObject<HTMLInputElement>,
   onDelete: (id: number) => void;
-  onEdit: (newHabit: { id: number, text: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
+  onEdit: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
+  onEditButtonClick: () => void
 }
 
-const BuildingHabit = ({ id, text, done, inputRef, onDelete, onEdit }: BuildingHabitProps) => {
+const BuildingHabit = ({ id, text, category, days, notes, done, inputRef, onDelete, onEdit, onEditButtonClick }: BuildingHabitProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => setIsHovered(true);
@@ -34,7 +38,7 @@ const BuildingHabit = ({ id, text, done, inputRef, onDelete, onEdit }: BuildingH
 
   const handleCheckboxChange = () => {
     const updatedDone = !done;
-    onEdit({ id: id, text: text, done: updatedDone, inputRef: inputRef });
+    onEdit({ id: id, text: text, category: category, days: days, notes: notes, done: updatedDone, inputRef: inputRef });
     
     // TODO: Update text entry in database
     
@@ -43,7 +47,7 @@ const BuildingHabit = ({ id, text, done, inputRef, onDelete, onEdit }: BuildingH
   const handleTextChange = () => {
     if (inputRef.current !== null) {
       text = inputRef.current.value;
-      onEdit({ id: id, text: text, done: done, inputRef: inputRef });
+      onEdit({ id: id, text: text, category: category, days: days, notes: notes, done: done, inputRef: inputRef });
     }
   }
 
@@ -62,7 +66,7 @@ const BuildingHabit = ({ id, text, done, inputRef, onDelete, onEdit }: BuildingH
       />
       <input 
         type="text" 
-        className="entry-input" 
+        className={`entry-input ${done && "entry-done"}`}
         placeholder="ex. I want to be a healthy eater"
         value={text}
         ref={inputRef}
@@ -70,7 +74,7 @@ const BuildingHabit = ({ id, text, done, inputRef, onDelete, onEdit }: BuildingH
         onBlur={handleBlur}
         onChange={handleTextChange}
       />
-      {isHovered && <EditButton onClick={() => {}} />}
+      {isHovered && <EditButton onClick={onEditButtonClick} />}
       {isHovered && <DeleteButton onClick={() => onDelete(id)}/>}
     </div>
   )
