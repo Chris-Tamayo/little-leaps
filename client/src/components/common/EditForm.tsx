@@ -16,6 +16,19 @@ const EditForm = ( { habit, onEdit, onCancel, onSubmit }: EditFormProps) => {
   const handleCategoryChange = (newCategory: string) => {
     setCategory(newCategory);
   }
+
+  const handleDaysChange = (day: string) => {
+    const newDays = [...days];
+
+    if (!newDays.includes(day)) {
+      newDays.push(day);
+    } else {
+      const index = newDays.indexOf(day);
+      newDays.splice(index, 1);
+    }
+
+    setDays(newDays);
+  }
   
   const handleSubmitButtonClicked = () => {
     const editedHabit = { id: habit.id, text: text, category: category, days: days, notes: notes, done: habit.done, inputRef: habit.inputRef };
@@ -28,7 +41,7 @@ const EditForm = ( { habit, onEdit, onCancel, onSubmit }: EditFormProps) => {
       <div>
         <div className="edit-element">
           <p>Habit Name</p>
-          <input value={habit.text} placeholder="ex. Read 10 pages"></input>
+          <input value={text} placeholder="ex. Read 10 pages" onChange={(e) => setText(e.target.value)}></input>
         </div>
 
         <div className="edit-element">
@@ -49,19 +62,21 @@ const EditForm = ( { habit, onEdit, onCancel, onSubmit }: EditFormProps) => {
         <div className="edit-element">
           <p>Repeat on</p>
           <div>
-            <button className="weekday">Su</button>
-            <button className="weekday">M</button>
-            <button className="weekday">T</button>
-            <button className="weekday">W</button>
-            <button className="weekday">Th</button>
-            <button className="weekday">F</button>
-            <button className="weekday">Sa</button>
+            {["Su", "M", "T", "W", "Th", "F", "Sa"].map((day) => (
+              <button
+                key={day}
+                className={`weekday ${days.includes(day) && "selected-day"}`}
+                onClick={() => handleDaysChange(day)}
+              >
+                {day}
+              </button>
+            ))}
           </div>
         </div>
         
         <div className="edit-element">
           <p>Notes</p>
-          <input></input>
+          <input value={notes} onChange={(e) => setNotes(e.target.value)}></input>
         </div>
         
         <div className="edit-element button-container">

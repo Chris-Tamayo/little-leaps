@@ -3,8 +3,8 @@ import BuildingHabit from "./BuildingHabit";
 interface BuildingHabitListProps {
   habits: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }[],
   onDelete: (id: number) => void,
-  onEdit: (newMotivation: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
-  onEditButtonClick: () => void
+  onEdit: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
+  onEditButtonClick: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
 }
 
 const BuildingHabitList = ( { habits, onDelete, onEdit, onEditButtonClick }: BuildingHabitListProps) => {

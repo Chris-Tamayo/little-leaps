@@ -23,7 +23,7 @@ const BuildingHabitSection = () => {
     console.log("Add button clicked");
 
     const ref = createRef<HTMLInputElement>();
-    const newHabits = habits.concat({ id: nextId, text: "", category: "none", days: ["Su", "M", "T", "W", "Th", "F", "Sa"], notes: "", done: false, inputRef: ref});
+    const newHabits = habits.concat({ id: nextId, text: "", category: "None", days: ["Su", "M", "T", "W", "Th", "F", "Sa"], notes: "", done: false, inputRef: ref});
     setHabits(newHabits);
 
     // Increment entry id
@@ -52,6 +52,7 @@ const BuildingHabitSection = () => {
 
   const handleCancelEdit = () => {
     setIsEditing(false);
+    setCurrentHabit(null);
   }
 
   const handleEditButtonClicked = (habit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => {
@@ -71,8 +72,8 @@ const BuildingHabitSection = () => {
 
   return (
     <section className="flex flex-col items-center w-full">
-      {isEditing ? 
-      <EditForm habit={currentHabit} onSubmit={handleEditFormSubmitted} onCancel={handleCancelEdit} />
+      {isEditing && currentHabit ? 
+      <EditForm habit={currentHabit} onSubmit={handleEditFormSubmitted} onEdit={handleEdit} onCancel={handleCancelEdit} />
       : 
       <div className="w-1/2">
         <DateDisplay />

@@ -11,8 +11,8 @@ interface BuildingHabitProps {
   done: boolean,
   inputRef: React.RefObject<HTMLInputElement>,
   onDelete: (id: number) => void;
-  onEdit: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
-  onEditButtonClick: () => void
+  onEdit: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void;
+  onEditButtonClick: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void;
 }
 
 const BuildingHabit = ({ id, text, category, days, notes, done, inputRef, onDelete, onEdit, onEditButtonClick }: BuildingHabitProps) => {
@@ -51,6 +51,10 @@ const BuildingHabit = ({ id, text, category, days, notes, done, inputRef, onDele
     }
   }
 
+  const handleEditButtonClicked = () => {
+    onEditButtonClick({ id: id, text: text, category: category, days: days, notes: notes, done: done, inputRef: inputRef })
+  }
+
   return (
     <div 
       className="entry" 
@@ -74,7 +78,7 @@ const BuildingHabit = ({ id, text, category, days, notes, done, inputRef, onDele
         onBlur={handleBlur}
         onChange={handleTextChange}
       />
-      {isHovered && <EditButton onClick={onEditButtonClick} />}
+      {isHovered && <EditButton onClick={handleEditButtonClicked} />}
       {isHovered && <DeleteButton onClick={() => onDelete(id)}/>}
     </div>
   )
