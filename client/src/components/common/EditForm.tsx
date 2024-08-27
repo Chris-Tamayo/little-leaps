@@ -1,13 +1,13 @@
-import { useState } from "react"
+import { useState } from "react";
+import "../../styles/EditForm.css";
 
 interface EditFormProps {
   habit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> },
-  onEdit: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void,
   onCancel: () => void
   onSubmit: (newHabit: { id: number, text: string, category: string, days: string[], notes: string, done: boolean, inputRef: React.RefObject<HTMLInputElement> }) => void
 }
 
-const EditForm = ( { habit, onEdit, onCancel, onSubmit }: EditFormProps) => {
+const EditForm = ( { habit, onCancel, onSubmit }: EditFormProps) => {
   const [text, setText] = useState(habit.text);
   const [category, setCategory] = useState(habit.category);
   const [days, setDays] = useState(habit.days);

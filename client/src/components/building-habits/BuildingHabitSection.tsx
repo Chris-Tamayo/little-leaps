@@ -73,7 +73,7 @@ const BuildingHabitSection = () => {
   return (
     <section className="flex flex-col items-center w-full">
       {isEditing && currentHabit ? 
-      <EditForm habit={currentHabit} onSubmit={handleEditFormSubmitted} onEdit={handleEdit} onCancel={handleCancelEdit} />
+      <EditForm habit={currentHabit} onSubmit={handleEditFormSubmitted} onCancel={handleCancelEdit} />
       : 
       <div className="w-1/2">
         <DateDisplay />
