@@ -1,0 +1,48 @@
+#edit-form {
+  background-color: white;
+}
+
+#edit-form input {
+  border: solid #dddddd;
+  padding: 2px 6px 2px 6px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+#edit-form button {
+  border: solid #dddddd;
+  margin-right: 7.5px;
+}
+
+#edit-form .edit-element {
+  margin: 16px 0px;
+}
+
+#edit-form button.category {
+  border-radius: 7.5px;
+  padding: 5px 10px;
+}
+
+#edit-form .weekday {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+}
+
+#edit-form .button-container button {
+  border-radius: 7.5px;
+  padding: 5px 10px;
+}
+
+#edit-form button:hover {
+  border: solid black;
+  /* background-color: #eeeeee; */
+}
+
+#edit-form .selected-category {
+  background-color: #dddddd;
+}
+
+#edit-form .selected-day {
+  background-color: #dddddd;
+}
