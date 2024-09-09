@@ -7,8 +7,9 @@ export class DDBTableStack extends Stack {
     super(scope, id, props);
 
     const tableName = 'Tasks';
-    const partitionKeyName = 'user';
-    const sortKeyName = 'task-id';
+    const partitionKeyName = 'email';
+    const sortKeyName = 'taskId';
+    
     const tableProps = {
       tableName: tableName,
       partitionKey: { name: partitionKeyName, type: AttributeType.STRING },
