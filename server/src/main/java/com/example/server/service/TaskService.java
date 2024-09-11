@@ -5,6 +5,9 @@ import com.example.server.model.Task;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class for Task object validation before CRUD operations.
+ */
 @AllArgsConstructor
 @Service
 public class TaskService {
