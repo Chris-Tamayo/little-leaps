@@ -27,9 +27,12 @@ repositories {
 dependencies {
 	implementation(platform("software.amazon.awssdk:bom:2.27.18"))
 	implementation("software.amazon.awssdk:dynamodb-enhanced")
+	implementation("software.amazon.awssdk:sso")
+	implementation("software.amazon.awssdk:ssooidc")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.slf4j:slf4j-api")
+	implementation("ch.qos.logback:logback-classic")
 	compileOnly("org.projectlombok:lombok")
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation(platform("org.junit:junit-bom:5.11.0"))
