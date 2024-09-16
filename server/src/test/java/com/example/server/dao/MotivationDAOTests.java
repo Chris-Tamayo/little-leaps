@@ -76,7 +76,9 @@ public class MotivationDAOTests {
 
     @Test
     public void testDelete() {
-        Mockito.when(motivationDAO.delete(MOTIVATION)).thenReturn(MOTIVATION);
+        Mockito.when(dynamoDbTable.deleteItem(MOTIVATION))
+                .thenReturn(MOTIVATION);
+
         final Motivation deletedMotivation = motivationDAO.delete(MOTIVATION);
         Assertions.assertEquals(deletedMotivation, MOTIVATION);
     }
