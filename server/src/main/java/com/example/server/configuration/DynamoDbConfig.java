@@ -1,5 +1,6 @@
 package com.example.server.configuration;
 
+import com.example.server.model.Motivation;
 import com.example.server.model.Task;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,12 @@ public class DynamoDbConfig {
     }
 
     @Bean
-    public DynamoDbTable<Task> dynamoDbTable(final DynamoDbEnhancedClient dynamoDbEnhancedClient) {
+    public DynamoDbTable<Task> taskDynamoDbTableTable(final DynamoDbEnhancedClient dynamoDbEnhancedClient) {
         return dynamoDbEnhancedClient.table("Tasks", TableSchema.fromBean(Task.class));
+    }
+
+    @Bean
+    public DynamoDbTable<Motivation> motivationDynamoDbTable(final DynamoDbEnhancedClient dynamoDbEnhancedClient) {
+        return dynamoDbEnhancedClient.table("Motivations", TableSchema.fromBean(Motivation.class));
     }
 }
