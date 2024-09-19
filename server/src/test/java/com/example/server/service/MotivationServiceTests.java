@@ -57,11 +57,4 @@ public class MotivationServiceTests {
         final Motivation deletedMotivation = motivationService.delete(EMAIL, MOTIVATION_ID);
         Assertions.assertEquals(MOTIVATION, deletedMotivation);
     }
-
-    @Test
-    public void testDelete() {
-        Mockito.when(motivationDAO.delete(MOTIVATION)).thenReturn(MOTIVATION);
-        final Motivation deletedMotivation = motivationService.delete(MOTIVATION);
-        Assertions.assertEquals(deletedMotivation, MOTIVATION);
-    }
 }

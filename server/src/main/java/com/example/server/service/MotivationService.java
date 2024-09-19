@@ -46,13 +46,4 @@ public class MotivationService {
     public Motivation delete(final String email, final int motivationId) {
         return motivationDAO.delete(email, motivationId);
     }
-
-    /**
-     * Delete Motivation object in database by object.
-     * @param motivation - Motivation to delete
-     * @return Deleted Motivation object from database
-     */
-    public Motivation delete(final Motivation motivation) {
-        return motivationDAO.delete(motivation);
-    }
 }

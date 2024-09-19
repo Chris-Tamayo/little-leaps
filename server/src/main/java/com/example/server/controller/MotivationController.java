@@ -60,6 +60,8 @@ public class MotivationController {
     @DeleteMapping("/motivation")
     public Motivation deleteMotivation(@RequestBody final Motivation motivation) {
         logger.info("Received request to delete motivation: {}", motivation);
-        return motivationService.delete(motivation);
+        final String email = motivation.getEmail();
+        final int motivationId = motivation.getMotivationId();
+        return motivationService.delete(email, motivationId);
     }
 }

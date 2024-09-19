@@ -52,7 +52,7 @@ public class MotivationControllerTests {
 
     @Test
     public void testDeleteMotivation() {
-        Mockito.when(motivationService.delete(MOTIVATION)).thenReturn(MOTIVATION);
+        Mockito.when(motivationService.delete(EMAIL, MOTIVATION_ID)).thenReturn(MOTIVATION);
         final Motivation deletedMotivation = motivationController.deleteMotivation(MOTIVATION);
         Assertions.assertEquals(deletedMotivation, MOTIVATION);
     }
