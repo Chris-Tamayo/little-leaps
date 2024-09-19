@@ -57,7 +57,7 @@ public class MotivationController {
      * @param motivation - Motivation to delete
      * @return - Deleted motivation
      */
-    @DeleteMapping("/Motivation")
+    @DeleteMapping("/motivation")
     public Motivation deleteMotivation(@RequestBody final Motivation motivation) {
         logger.info("Received request to delete motivation: {}", motivation);
         return motivationService.delete(motivation);
