@@ -30,7 +30,7 @@ public class MotivationControllerTests {
     public void testGetMotivation() {
         Mockito.when(motivationService.findByPrimaryKey(EMAIL, MOTIVATION_ID))
                 .thenReturn(MOTIVATION);
-        final Motivation retrievedMotivation = motivationController.getMotivation(MOTIVATION);
+        final Motivation retrievedMotivation = motivationController.getMotivation(EMAIL, MOTIVATION_ID);
         Assertions.assertEquals(retrievedMotivation, MOTIVATION);
     }
 
@@ -53,7 +53,7 @@ public class MotivationControllerTests {
     @Test
     public void testDeleteMotivation() {
         Mockito.when(motivationService.delete(EMAIL, MOTIVATION_ID)).thenReturn(MOTIVATION);
-        final Motivation deletedMotivation = motivationController.deleteMotivation(MOTIVATION);
+        final Motivation deletedMotivation = motivationController.deleteMotivation(EMAIL, MOTIVATION_ID);
         Assertions.assertEquals(deletedMotivation, MOTIVATION);
     }
 }
