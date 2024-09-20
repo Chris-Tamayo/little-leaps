@@ -16,6 +16,6 @@ public class Motivation {
     @Getter(onMethod_=@DynamoDbPartitionKey)
     private String email;
     @Getter(onMethod_=@DynamoDbSortKey)
-    private int motivationId;
+    private String id;
     private String text;
 }

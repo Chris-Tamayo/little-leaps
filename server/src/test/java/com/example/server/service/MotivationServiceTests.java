@@ -12,9 +12,9 @@ import org.mockito.MockitoAnnotations;
 
 public class MotivationServiceTests {
     private final String EMAIL = "user@gmail.com";
-    private final int MOTIVATION_ID = 1;
+    private final String ID = "id";
     private final String TEXT = "text";
-    private final Motivation MOTIVATION = new Motivation(EMAIL, MOTIVATION_ID, TEXT);
+    private final Motivation MOTIVATION = new Motivation(EMAIL, ID, TEXT);
 
     @Mock
     private MotivationDAO motivationDAO;
@@ -29,9 +29,9 @@ public class MotivationServiceTests {
 
     @Test
     public void testFindByPrimaryKey() {
-        Mockito.when(motivationDAO.findByPrimaryKey(EMAIL, MOTIVATION_ID))
+        Mockito.when(motivationDAO.findByPrimaryKey(EMAIL, ID))
                 .thenReturn(MOTIVATION);
-        final Motivation retrievedMotivation = motivationService.findByPrimaryKey(EMAIL, MOTIVATION_ID);
+        final Motivation retrievedMotivation = motivationService.findByPrimaryKey(EMAIL, ID);
         Assertions.assertEquals(MOTIVATION, retrievedMotivation);
     }
 
@@ -52,9 +52,9 @@ public class MotivationServiceTests {
 
     @Test
     public void testDeleteByPrimaryKey() {
-        Mockito.when(motivationDAO.delete(EMAIL, MOTIVATION_ID))
+        Mockito.when(motivationDAO.delete(EMAIL, ID))
                 .thenReturn(MOTIVATION);
-        final Motivation deletedMotivation = motivationService.delete(EMAIL, MOTIVATION_ID);
+        final Motivation deletedMotivation = motivationService.delete(EMAIL, ID);
         Assertions.assertEquals(MOTIVATION, deletedMotivation);
     }
 }

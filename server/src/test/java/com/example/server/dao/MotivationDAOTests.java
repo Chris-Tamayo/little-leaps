@@ -15,9 +15,9 @@ public class MotivationDAOTests {
     @Mock
     private DynamoDbTable<Motivation> dynamoDbTable;
     private final String EMAIL = "user@gmail.com";
-    private final int MOTIVATION_ID = 1;
+    private final String ID = "id";
     private final String TEXT = "text";
-    private final Motivation MOTIVATION = new Motivation(EMAIL, MOTIVATION_ID, TEXT);
+    private final Motivation MOTIVATION = new Motivation(EMAIL, ID, TEXT);
 
     @InjectMocks
     private MotivationDAO motivationDAO;
@@ -31,12 +31,12 @@ public class MotivationDAOTests {
     public void testFindByPrimaryKey() {
         final Key key = Key.builder()
                 .partitionValue(EMAIL)
-                .sortValue(MOTIVATION_ID)
+                .sortValue(ID)
                 .build();
         Mockito.when(dynamoDbTable.getItem(key))
                 .thenReturn(MOTIVATION);
 
-        final Motivation retrievedMotivation = motivationDAO.findByPrimaryKey(EMAIL, MOTIVATION_ID);
+        final Motivation retrievedMotivation = motivationDAO.findByPrimaryKey(EMAIL, ID);
 
         Assertions.assertEquals(MOTIVATION, retrievedMotivation);
     }
@@ -64,12 +64,12 @@ public class MotivationDAOTests {
     public void testDeleteByPrimaryKey() {
         final Key key = Key.builder()
                 .partitionValue(EMAIL)
-                .sortValue(MOTIVATION_ID)
+                .sortValue(ID)
                 .build();
         Mockito.when(dynamoDbTable.deleteItem(key))
                 .thenReturn(MOTIVATION);
 
-        final Motivation deletedMotivation = motivationDAO.delete(EMAIL, MOTIVATION_ID);
+        final Motivation deletedMotivation = motivationDAO.delete(EMAIL, ID);
 
         Assertions.assertEquals(MOTIVATION, deletedMotivation);
     }

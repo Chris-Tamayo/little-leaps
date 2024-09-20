@@ -16,6 +16,6 @@ public class Task {
     @Getter(onMethod_=@DynamoDbPartitionKey)
     private String email;
     @Getter(onMethod_=@DynamoDbSortKey)
-    private int taskId;
+    private String id;
     private String name;
 }

@@ -12,9 +12,9 @@ import org.mockito.MockitoAnnotations;
 
 public class TaskControllerTests {
     private final String EMAIL = "user@gmail.com";
-    private final int TASK_ID = 1;
+    private final String ID = "id";
     private final String NAME = "task";
-    private final Task TASK = new Task(EMAIL, TASK_ID, NAME);
+    private final Task TASK = new Task(EMAIL, ID, NAME);
     @Mock
     private TaskService taskService;
 
@@ -28,7 +28,7 @@ public class TaskControllerTests {
 
     @Test
     public void testGetTask() {
-        Mockito.when(taskService.findByPrimaryKey(EMAIL, TASK_ID))
+        Mockito.when(taskService.findByPrimaryKey(EMAIL, ID))
                 .thenReturn(TASK);
 
         final Task retrievedTask = taskController.getTask(TASK);
@@ -46,7 +46,7 @@ public class TaskControllerTests {
     @Test
     public void testUpdateTask() {
         final String updatedEmail = "user@yahoo.com";
-        final Task newTask = new Task(updatedEmail, TASK_ID, NAME);
+        final Task newTask = new Task(updatedEmail, ID, NAME);
         Mockito.when(taskService.update(newTask)).thenReturn(newTask);
 
         final Task updatedTask = taskController.updateTask(newTask);
@@ -56,7 +56,7 @@ public class TaskControllerTests {
 
     @Test
     public void testDeleteTask() {
-        Mockito.when(taskService.deleteByPrimaryKey(EMAIL, TASK_ID))
+        Mockito.when(taskService.deleteByPrimaryKey(EMAIL, ID))
                 .thenReturn(TASK);
 
         final Task deletedTask = taskController.deleteTask(TASK);

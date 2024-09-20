@@ -16,11 +16,11 @@ public class TaskService {
     /**
      * Retrieve Task object based on primary key.
      * @param email - Partition key of task
-     * @param taskId - Sort key of task
+     * @param id - Sort key of task
      * @return Retrieved Task from database
      */
-    public Task findByPrimaryKey(final String email, final int taskId) {
-        return taskDAO.findByPrimaryKey(email, taskId);
+    public Task findByPrimaryKey(final String email, final String id) {
+        return taskDAO.findByPrimaryKey(email, id);
     }
 
     /**
@@ -43,10 +43,10 @@ public class TaskService {
     /**
      * Delete Task object based on primary key.
      * @param email - Partition key of task
-     * @param taskId - Sort key of task
+     * @param id - Sort key of task
      * @return Deleted Task from database
      */
-    public Task deleteByPrimaryKey(final String email, final int taskId) {
-        return taskDAO.deleteByPrimaryKey(email, taskId);
+    public Task deleteByPrimaryKey(final String email, final String id) {
+        return taskDAO.deleteByPrimaryKey(email, id);
     }
 }

@@ -15,9 +15,9 @@ public class TaskDAOTests {
     @Mock
     private DynamoDbTable<Task> dynamoDbTable;
     private final String EMAIL = "user@gmail.com";
-    private final int TASK_ID = 1;
+    private final String ID = "id";
     private final String NAME = "task";
-    private final Task TASK = new Task(EMAIL, TASK_ID, NAME);
+    private final Task TASK = new Task(EMAIL, ID, NAME);
 
     @InjectMocks
     private TaskDAO taskDAO;
@@ -31,12 +31,12 @@ public class TaskDAOTests {
     public void testFindByPrimaryKey() {
         final Key key = Key.builder()
                 .partitionValue(EMAIL)
-                .sortValue(TASK_ID)
+                .sortValue(ID)
                 .build();
         Mockito.when(dynamoDbTable.getItem(key))
                 .thenReturn(TASK);
 
-        final Task retrievedTask = taskDAO.findByPrimaryKey(EMAIL, TASK_ID);
+        final Task retrievedTask = taskDAO.findByPrimaryKey(EMAIL, ID);
 
         Assertions.assertEquals(TASK, retrievedTask);
     }
@@ -64,12 +64,12 @@ public class TaskDAOTests {
     public void testDeleteByPrimaryKey() {
         final Key key = Key.builder()
                 .partitionValue(EMAIL)
-                .sortValue(TASK_ID)
+                .sortValue(ID)
                 .build();
         Mockito.when(dynamoDbTable.deleteItem(key))
                 .thenReturn(TASK);
 
-        final Task deletedTask = taskDAO.deleteByPrimaryKey(EMAIL, TASK_ID);
+        final Task deletedTask = taskDAO.deleteByPrimaryKey(EMAIL, ID);
 
         Assertions.assertEquals(TASK, deletedTask);
     }

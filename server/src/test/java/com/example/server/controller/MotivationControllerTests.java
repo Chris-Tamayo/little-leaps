@@ -12,9 +12,9 @@ import org.mockito.MockitoAnnotations;
 
 public class MotivationControllerTests {
     private final String EMAIL = "user@gmail.com";
-    private final int MOTIVATION_ID = 1;
+    private final String ID = "id";
     private final String TEXT = "text";
-    private final Motivation MOTIVATION = new Motivation(EMAIL, MOTIVATION_ID, TEXT);
+    private final Motivation MOTIVATION = new Motivation(EMAIL, ID, TEXT);
     @Mock
     private MotivationService motivationService;
 
@@ -28,9 +28,9 @@ public class MotivationControllerTests {
 
     @Test
     public void testGetMotivation() {
-        Mockito.when(motivationService.findByPrimaryKey(EMAIL, MOTIVATION_ID))
+        Mockito.when(motivationService.findByPrimaryKey(EMAIL, ID))
                 .thenReturn(MOTIVATION);
-        final Motivation retrievedMotivation = motivationController.getMotivation(EMAIL, MOTIVATION_ID);
+        final Motivation retrievedMotivation = motivationController.getMotivation(EMAIL, ID);
         Assertions.assertEquals(retrievedMotivation, MOTIVATION);
     }
 
@@ -43,8 +43,8 @@ public class MotivationControllerTests {
 
     @Test
     public void testUpdateMotivation() {
-        final int newId = 2;
-        final Motivation newMotivation = new Motivation(EMAIL, newId, TEXT);
+        final String newText = "newText";
+        final Motivation newMotivation = new Motivation(EMAIL, ID, newText);
         Mockito.when(motivationService.update(newMotivation)).thenReturn(newMotivation);
         final Motivation updatedMotivation = motivationController.updateMotivation(newMotivation);
         Assertions.assertEquals(newMotivation, updatedMotivation);
@@ -52,8 +52,8 @@ public class MotivationControllerTests {
 
     @Test
     public void testDeleteMotivation() {
-        Mockito.when(motivationService.delete(EMAIL, MOTIVATION_ID)).thenReturn(MOTIVATION);
-        final Motivation deletedMotivation = motivationController.deleteMotivation(EMAIL, MOTIVATION_ID);
+        Mockito.when(motivationService.delete(EMAIL, ID)).thenReturn(MOTIVATION);
+        final Motivation deletedMotivation = motivationController.deleteMotivation(EMAIL, ID);
         Assertions.assertEquals(deletedMotivation, MOTIVATION);
     }
 }

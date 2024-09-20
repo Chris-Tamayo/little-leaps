@@ -30,8 +30,8 @@ public class TaskController {
     public Task getTask(@RequestBody final Task task) {
         logger.info("Received request to get task: {}", task);
         final String email = task.getEmail();
-        final int taskId = task.getTaskId();
-        return taskService.findByPrimaryKey(email, taskId);
+        final String id = task.getId();
+        return taskService.findByPrimaryKey(email, id);
     }
 
     /**
@@ -64,7 +64,7 @@ public class TaskController {
     public Task deleteTask(@RequestBody final Task task) {
         logger.info("Received request to delete task: {}", task);
         final String email = task.getEmail();
-        final int taskId = task.getTaskId();
-        return taskService.deleteByPrimaryKey(email, taskId);
+        final String id = task.getId();
+        return taskService.deleteByPrimaryKey(email, id);
     }
 }

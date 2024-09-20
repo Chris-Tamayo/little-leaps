@@ -28,7 +28,7 @@ public class MotivationController {
      * @return Retrieved Motivation object
      */
     @GetMapping("/motivation")
-    public Motivation getMotivation(@RequestParam final String email, @RequestParam final int id) {
+    public Motivation getMotivation(@RequestParam final String email, @RequestParam final String id) {
         logger.info("Received request to get motivation for email: {}, id: {}", email, id);
         return motivationService.findByPrimaryKey(email, id);
     }
@@ -57,12 +57,12 @@ public class MotivationController {
     /**
      * DELETE endpoint to delete Motivation objects.
      * @param email - Primary key
-     * @param motivationId - Sort key
+     * @param id - Sort key
      * @return - Deleted motivation
      */
     @DeleteMapping("/motivation")
-    public Motivation deleteMotivation(@RequestParam final String email, @RequestParam final int motivationId) {
-        logger.info("Received request to delete motivation for email: {}, motivationId: {}", email, motivationId);
-        return motivationService.delete(email, motivationId);
+    public Motivation deleteMotivation(@RequestParam final String email, @RequestParam final String id) {
+        logger.info("Received request to delete motivation for email: {}, motivationId: {}", email, id);
+        return motivationService.delete(email, id);
     }
 }

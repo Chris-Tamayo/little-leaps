@@ -14,13 +14,13 @@ public class MotivationDAO {
     /**
      * Retrieve Motivation object based on primary key.
      * @param email - Partition key
-     * @param motivationId - Sort key
+     * @param id - Sort key
      * @return Retrieved Motivation from database
      */
-    public Motivation findByPrimaryKey(final String email, final int motivationId) {
+    public Motivation findByPrimaryKey(final String email, final String id) {
         final Key key = Key.builder()
                 .partitionValue(email)
-                .sortValue(motivationId)
+                .sortValue(id)
                 .build();
 
         return dynamoDbTable.getItem(key);
@@ -46,13 +46,13 @@ public class MotivationDAO {
     /**
      * Delete Motivation object in database by primary key
      * @param email - Partition key
-     * @param motivationId - Sort key
+     * @param id - Sort key
      * @return Deleted Motivation object from database
      */
-    public Motivation delete(final String email, final int motivationId) {
+    public Motivation delete(final String email, final String id) {
         final Key key = Key.builder()
                 .partitionValue(email)
-                .sortValue(motivationId)
+                .sortValue(id)
                 .build();
 
         return dynamoDbTable.deleteItem(key);

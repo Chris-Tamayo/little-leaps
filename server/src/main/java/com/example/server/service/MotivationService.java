@@ -13,11 +13,11 @@ public class MotivationService {
     /**
      * Retrieve Motivation object based on primary key.
      * @param email - Partition key
-     * @param motivationId - Sort key
+     * @param id - Sort key
      * @return Retrieved Motivation from database
      */
-    public Motivation findByPrimaryKey(final String email, final int motivationId) {
-        return motivationDAO.findByPrimaryKey(email, motivationId);
+    public Motivation findByPrimaryKey(final String email, final String id) {
+        return motivationDAO.findByPrimaryKey(email, id);
     }
 
     /**
@@ -40,10 +40,10 @@ public class MotivationService {
     /**
      * Delete Motivation object based on primary key.
      * @param email - Partition key
-     * @param motivationId - Sort key
+     * @param id - Sort key
      * @return Deleted Motivation from database
      */
-    public Motivation delete(final String email, final int motivationId) {
-        return motivationDAO.delete(email, motivationId);
+    public Motivation delete(final String email, final String id) {
+        return motivationDAO.delete(email, id);
     }
 }

@@ -18,9 +18,9 @@ public class TaskServiceTests {
     private TaskService taskService;
 
     private final String EMAIL = "user@gmail.com";
-    private final int TASK_ID = 1;
+    private final String ID = "id";
     private final String NAME = "task";
-    private final Task TASK = new Task(EMAIL, TASK_ID, NAME);
+    private final Task TASK = new Task(EMAIL, ID, NAME);
 
     @BeforeEach
     public void setup() {
@@ -29,10 +29,10 @@ public class TaskServiceTests {
 
     @Test
     public void testFindByPrimaryKey() {
-        Mockito.when(taskDAO.findByPrimaryKey(EMAIL, TASK_ID))
+        Mockito.when(taskDAO.findByPrimaryKey(EMAIL, ID))
                 .thenReturn(TASK);
 
-        final Task retrievedTask = taskService.findByPrimaryKey(EMAIL, TASK_ID);
+        final Task retrievedTask = taskService.findByPrimaryKey(EMAIL, ID);
 
         Assertions.assertEquals(TASK, retrievedTask);
     }
@@ -49,7 +49,7 @@ public class TaskServiceTests {
     @Test
     public void testUpdate() {
         final String updatedEmail = "user@yahoo.com";
-        final Task newTask = new Task(updatedEmail, TASK_ID, NAME);
+        final Task newTask = new Task(updatedEmail, ID, NAME);
         Mockito.when(taskDAO.update(newTask)).thenReturn(newTask);
 
         final Task updatedTask = taskService.update(newTask);
@@ -59,10 +59,10 @@ public class TaskServiceTests {
 
     @Test
     public void testDeleteByPrimaryKey() {
-        Mockito.when(taskDAO.deleteByPrimaryKey(EMAIL, TASK_ID))
+        Mockito.when(taskDAO.deleteByPrimaryKey(EMAIL, ID))
                 .thenReturn(TASK);
 
-        final Task deletedTask = taskService.deleteByPrimaryKey(EMAIL, TASK_ID);
+        final Task deletedTask = taskService.deleteByPrimaryKey(EMAIL, ID);
 
         Assertions.assertEquals(TASK, deletedTask);
     }
