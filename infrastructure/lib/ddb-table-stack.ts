@@ -9,13 +9,13 @@ export class DDBTableStack extends Stack {
     const taskTableProps = {
       tableName: 'Tasks',
       partitionKey: { name: 'email', type: AttributeType.STRING },
-      sortKey: { name: 'taskId', type: AttributeType.NUMBER }
+      sortKey: { name: 'id', type: AttributeType.STRING }
     }
 
     const motivationTableProps = {
       tableName: 'Motivations',
       partitionKey: { name: 'email', type: AttributeType.STRING },
-      sortKey: { name: 'motivationId', type: AttributeType.NUMBER }
+      sortKey: { name: 'id', type: AttributeType.STRING }
     }
     
     new aws_dynamodb.TableV2(this, 'Tasks', taskTableProps);
