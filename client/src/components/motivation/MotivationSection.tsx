@@ -4,12 +4,12 @@ import SectionHeader from "../common/SectionHeader";
 import DateDisplay from "../common/DateDisplay";
 import MotivationList from "./MotivationList";
 import { createMotivation, updateMotivation, deleteMotivation } from '../../services/motivationService.js';
+import { v4 as uuidv4 } from 'uuid';
 
-let nextId = 0; // TODO: use current millis
 const email = 'user@gmail.com';
 
 const MotivationSection = () => {
-  const [motivations, setMotivations] = useState<{ id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }[]>([]);
+  const [motivations, setMotivations] = useState<{ id: string, text: string, inputRef: React.RefObject<HTMLInputElement> }[]>([]);
   const [newMotivationRef, setNewMotivationRef] = useState<React.RefObject<HTMLInputElement> | null>(null);
   
   useEffect(() => {
@@ -21,21 +21,21 @@ const MotivationSection = () => {
   const handleAddButtonClicked = async () => {
     console.log("Add button clicked");
 
+    const id = uuidv4();
+    console.log("Generated id: ", id);
+
     const ref = createRef<HTMLInputElement>();
-    const newMotivations = motivations.concat({ id: nextId, text: "", inputRef: ref});
+    const newMotivations = motivations.concat({ id: id, text: "", inputRef: ref});
     setMotivations(newMotivations);
 
     // Create in database
-    await createMotivation({email: email, motivationId: nextId, text: ""});
-
-    // Increment entry id
-    nextId++;
+    // await createMotivation({email: email, motivationId: id, text: ""});
 
     // Set ref for focus
     setNewMotivationRef(ref);
   }
 
-  const handleEdit = (newMotivation: {id: number, text: string, inputRef: React.RefObject<HTMLInputElement>}) => {
+  const handleEdit = (newMotivation: {id: string, text: string, inputRef: React.RefObject<HTMLInputElement>}) => {
     console.log("Editing id: " + newMotivation.id);
     const newMotivations = motivations.map((motivation) => {
       if (motivation.id === newMotivation.id) {
@@ -46,12 +46,12 @@ const MotivationSection = () => {
     setMotivations(newMotivations);
   }
 
-  const handleUpdate = async (id: number, text: string) => {
+  const handleUpdate = async (id: string, text: string) => {
     // Update in database
     await updateMotivation({email: email, motivationId: id, text: text});
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: string) => {
     console.log("Deleting id: " + id);
     const newMotivations = motivations.filter((motivation) => motivation.id !== id)
     setMotivations(newMotivations);

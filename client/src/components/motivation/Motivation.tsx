@@ -2,12 +2,12 @@ import { useRef, useState } from "react";
 import DeleteButton from "../common/DeleteButton"
 
 interface MotivationProps {
-  id: number,
+  id: string,
   text: string,
   inputRef: React.RefObject<HTMLInputElement>,
-  onDelete: (id: number) => void;
-  onEdit: (newMotivation: { id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }) => void;
-  onUpdate: (id: number, text: string) => void;
+  onDelete: (id: string) => void;
+  onEdit: (newMotivation: { id: string, text: string, inputRef: React.RefObject<HTMLInputElement> }) => void;
+  onUpdate: (id: string, text: string) => void;
 }
 
 const Motivation = ({ id, text, inputRef, onDelete, onEdit, onUpdate }: MotivationProps) => {
