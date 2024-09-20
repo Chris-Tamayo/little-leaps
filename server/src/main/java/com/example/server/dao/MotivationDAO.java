@@ -5,6 +5,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
+import software.amazon.awssdk.enhanced.dynamodb.model.PageIterable;
+import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Repository
@@ -24,6 +28,17 @@ public class MotivationDAO {
                 .build();
 
         return dynamoDbTable.getItem(key);
+    }
+
+    public List<Motivation> findAll(final String partitionKey) {
+        final Key key = Key.builder()
+                .partitionValue(partitionKey)
+                .build();
+
+        final QueryConditional queryConditional = QueryConditional.keyEqualTo(key);
+        final PageIterable<Motivation> pageIterable = dynamoDbTable.query(queryConditional);
+
+        return pageIterable.items().stream().toList();
     }
 
     /**

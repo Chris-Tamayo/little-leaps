@@ -5,6 +5,8 @@ import com.example.server.model.Motivation;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class MotivationService {
@@ -18,6 +20,10 @@ public class MotivationService {
      */
     public Motivation findByPrimaryKey(final String email, final String id) {
         return motivationDAO.findByPrimaryKey(email, id);
+    }
+
+    public List<Motivation> findAll(final String partitionKey) {
+        return motivationDAO.findAll(partitionKey);
     }
 
     /**

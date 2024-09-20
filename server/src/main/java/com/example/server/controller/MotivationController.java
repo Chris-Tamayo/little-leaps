@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -31,6 +33,12 @@ public class MotivationController {
     public Motivation getMotivation(@RequestParam final String email, @RequestParam final String id) {
         logger.info("Received request to get motivation for email: {}, id: {}", email, id);
         return motivationService.findByPrimaryKey(email, id);
+    }
+
+    @GetMapping("/motivations")
+    public List<Motivation> getMotivations(@RequestParam final String email) {
+        logger.info("Received request to get all motivations for email: {}", email);
+        return motivationService.findAll(email);
     }
 
     /**
