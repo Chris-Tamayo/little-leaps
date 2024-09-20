@@ -6,11 +6,13 @@ interface MotivationProps {
   text: string,
   inputRef: React.RefObject<HTMLInputElement>,
   onDelete: (id: number) => void;
-  onEdit: (newMotivation: { id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }) => void
+  onEdit: (newMotivation: { id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }) => void;
+  onUpdate: (id: number, text: string) => void;
 }
 
-const Motivation = ({ id, text, inputRef, onDelete, onEdit }: MotivationProps) => {
+const Motivation = ({ id, text, inputRef, onDelete, onEdit, onUpdate }: MotivationProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [oldText, setOldText] = useState(text);
 
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
@@ -24,6 +26,12 @@ const Motivation = ({ id, text, inputRef, onDelete, onEdit }: MotivationProps) =
   const handleBlur = () => {
     if (inputRef.current?.value === "") {
       onDelete(id);
+    } else {
+      // Only update in database if text changed
+      if (oldText !== text) {
+        onUpdate(id, text);
+      }
+      setOldText(text);
     }
   }
 

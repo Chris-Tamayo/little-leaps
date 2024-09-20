@@ -4,9 +4,10 @@ interface MotivationListProps {
   motivations: { id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }[],
   onDelete: (id: number) => void,
   onEdit: (newMotivation: { id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }) => void
+  onUpdate: (id: number, text: string) => void;
 }
 
-const MotivationList = ( { motivations, onDelete, onEdit }: MotivationListProps) => {
+const MotivationList = ( { motivations, onDelete, onEdit, onUpdate }: MotivationListProps) => {
   return (
     <div className="entry-section">
       {motivations.map((motivation) => 
@@ -17,6 +18,7 @@ const MotivationList = ( { motivations, onDelete, onEdit }: MotivationListProps)
           inputRef={motivation.inputRef}
           onDelete={onDelete}
           onEdit={onEdit}
+          onUpdate={onUpdate}
         />
       )}
     </div>

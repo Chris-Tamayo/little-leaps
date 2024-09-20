@@ -1,11 +1,12 @@
 import { createRef, useEffect, useState } from "react";
-import Motivation from "./Motivation";
 import AddButton from "../common/AddButton";
 import SectionHeader from "../common/SectionHeader";
 import DateDisplay from "../common/DateDisplay";
 import MotivationList from "./MotivationList";
+import { createMotivation, updateMotivation, deleteMotivation } from '../../services/motivationService.js';
 
-let nextId = 0;
+let nextId = 0; // TODO: use current millis
+const email = 'user@gmail.com';
 
 const MotivationSection = () => {
   const [motivations, setMotivations] = useState<{ id: number, text: string, inputRef: React.RefObject<HTMLInputElement> }[]>([]);
@@ -17,12 +18,15 @@ const MotivationSection = () => {
     }
   }, [newMotivationRef])
 
-  const handleAddButtonClicked = () => {
+  const handleAddButtonClicked = async () => {
     console.log("Add button clicked");
 
     const ref = createRef<HTMLInputElement>();
     const newMotivations = motivations.concat({ id: nextId, text: "", inputRef: ref});
     setMotivations(newMotivations);
+
+    // Create in database
+    await createMotivation({email: email, motivationId: nextId, text: ""});
 
     // Increment entry id
     nextId++;
@@ -42,10 +46,18 @@ const MotivationSection = () => {
     setMotivations(newMotivations);
   }
 
-  const handleDelete = (id: number) => {
+  const handleUpdate = async (id: number, text: string) => {
+    // Update in database
+    await updateMotivation({email: email, motivationId: id, text: text});
+  }
+
+  const handleDelete = async (id: number) => {
     console.log("Deleting id: " + id);
     const newMotivations = motivations.filter((motivation) => motivation.id !== id)
     setMotivations(newMotivations);
+
+    // Delete in database
+    await deleteMotivation({email: email, id: id});
   }
 
   const printList = () => {
@@ -61,7 +73,7 @@ const MotivationSection = () => {
           title="Motivation" 
           description="What kind of person do you aspire to be?"
         />
-        <MotivationList motivations={motivations} onDelete={handleDelete} onEdit={handleEdit}/>
+        <MotivationList motivations={motivations} onDelete={handleDelete} onEdit={handleEdit} onUpdate={handleUpdate}/>
         <AddButton onClick={handleAddButtonClicked} />
         <button onClick={printList}>Print</button>
       </div>

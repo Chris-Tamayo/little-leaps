@@ -4,7 +4,7 @@ interface DeleteButtonProps {
 
 const DeleteButton = ({ onClick }: DeleteButtonProps) => {
   return (
-    <button className="entry-button" onClick={onClick}>
+    <button className="entry-button" onClick={onClick} onMouseDown={(e) => e.preventDefault()}>
       <span className="material-symbols-outlined">close</span>
     </button>
   )
